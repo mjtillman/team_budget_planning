@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Team Budget Planning</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <style>
+    body {
+      background-color: darkgrey;
+    }
+    .content {
+      padding: 1em;
+      border: 1px dimgray solid !important;
+      background-color: white;
+    }
+    .title {
+      margin-top: 25%;
+    }
+    .nav {
+      margin-top: 1em;
+    }
+    h5 {
+      text-transform: uppercase !important;
+      letter-spacing: 0.25em;
+    }
+  </style>
+
+  <script>
+    let vendors = [
+      {"vendor_id" : 0 , "vendor_name" : "Microsoft", "hq" : "Seattle"},
+      {"vendor_id" : 1, "vendor_name" : "Intel", "hq" : "Santa Clara"},
+      {"vendor_id" : 2 , "vendor_name" : "Apple", "hq" : "Mountain View"}
+    ];
+
+    let deals = [
+      {"deal_id" : 0 , "vendor_name" : "Microsoft", "project_name" : "Apollo Project", "project_cost" : 1000},
+      {"deal_id" : 1, "vendor_name" : "Intel", "project_name" : "Hermes Project", "project_cost" : 10000},
+      {"deal_id" : 2 , "vendor_name" : "Apple", "project_name" : "Zeus Project", "project_cost" : 100000}
+    ];
+
+    let current_role = "product";
+    let current_tab = "vendor";
+    let current_page = "view_vendors";
+
+    const product = {
+      "product_tabs": ["Vendors", "Contracts"],
+      "product_views": ["View Vendors", "Add New Vendor"]
+    };
+
+    const finance = {
+      "finance_tabs": ["Budgets"],
+      "finance_views": ["View Costs", "Add New Costs"]
+    };
+
+    let current_nav = product;
+
+    function roleChange(role) {
+      let productButton = document.getElementById("product");
+      let financeButton = document.getElementById("finance");
+
+      current_role = role;
+
+      switch (current_role) {
+        case "product":
+          productButton.setAttribute("class", "button-primary");
+          financeButton.setAttribute("class", "button");
+          current_tab = "vendor";
+          break;
+        case "finance":
+          productButton.setAttribute("class", "button");
+          financeButton.setAttribute("class", "button-primary");
+          current_tab = "budget";
+          break;
+      }
+
+    }
+
+    function tabChange() {
+      let tabLoc = document.getElementById("tabs");
+      let tabHTML = "";
+      switch (current_tab) {
+        case "vendor":
+          product.product_tabs.forEach((t, n) => {
+            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
+          });
+          break;
+
+        case "budget":
+          finance.finance_tabs.forEach((t, n) => {
+            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
+          });
+          break;
+      }
+
+      tabLoc.innerHTML = tabHTML;
+      pageChange();
+    }
+
+    function pageChange(currentPage) {
+      let pageLoc = document.getElementById("pages");
+      let tabHTML = "";
+      switch (currentPage) {
+        case "product":
+          product.product_views.forEach((t, n) => {
+            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
+          });
+          break;
+
+        case "finance":
+          finance.finance_views.forEach((t, n) => {
+            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
+          });
+          break;
+      }
+      pageLoc.innerHTML = tabHTML;
+    }
+
+    function viewChange() {
+      let viewLoc = document.getElementById("view");
+      let viewHTML = "";
+      switch (current_role) {
+        case "product":
+
+          break;
+
+        case "finance":
+
+          break;
+      }
+      viewLoc.innerHTML = viewHTML;
+    }
+
+
+  </script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body onload="roleChange('product');">
+
+  <!-- Primary Page Layout  –––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container title">
+    <div class="row">
+      <div class="twelve columns" >
+        <h5>Team Budget Planning</h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation  ––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row" id="tabs">
+
+    </div>
+    <div class="row" id="pages">
+
+    </div>
+  </div>
+
+  <!-- Contents  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container content">
+    <div class="row">
+      <div class="twelve column" id="view">
+        <p>Lorem ipsum is oremlay ipsumay in Pig Latin.</p>
+        <p><a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Role Switcher  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container nav">
+    <div class="row">
+      <div class="six columns" >
+        <button id="product" onclick="roleChange('product')">Product Management</button>
+      </div>
+      <div class="six columns" >
+        <button id="finance" onclick="roleChange('finance')">Finance Department</button>
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
