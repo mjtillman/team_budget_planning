@@ -1,0 +1,28 @@
+body {
+    background-color: darkgrey;
+    max-width: 960px !important;
+}
+
+#view {
+    background-color: white;
+    min-height: 300px;
+}
+
+.content {
+    padding: 1em;
+    border: 1px dimgray solid !important;
+    background-color: white;
+}
+
+.title {
+    margin-top: 25%;
+}
+
+.nav {
+    margin-top: 1em;
+}
+
+h5 {
+    text-transform: uppercase !important;
+    letter-spacing: 0.25em;
+}

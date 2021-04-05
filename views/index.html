@@ -2,203 +2,80 @@
 <html lang="en">
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Team Budget Planning</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <style>
-    body {
-      background-color: darkgrey;
-    }
-    .content {
-      padding: 1em;
-      border: 1px dimgray solid !important;
-      background-color: white;
-    }
-    .title {
-      margin-top: 25%;
-    }
-    .nav {
-      margin-top: 1em;
-    }
-    h5 {
-      text-transform: uppercase !important;
-      letter-spacing: 0.25em;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 
-  <script>
-    let vendors = [
-      {"vendor_id" : 0 , "vendor_name" : "Microsoft", "hq" : "Seattle"},
-      {"vendor_id" : 1, "vendor_name" : "Intel", "hq" : "Santa Clara"},
-      {"vendor_id" : 2 , "vendor_name" : "Apple", "hq" : "Mountain View"}
-    ];
-
-    let deals = [
-      {"deal_id" : 0 , "vendor_name" : "Microsoft", "project_name" : "Apollo Project", "project_cost" : 1000},
-      {"deal_id" : 1, "vendor_name" : "Intel", "project_name" : "Hermes Project", "project_cost" : 10000},
-      {"deal_id" : 2 , "vendor_name" : "Apple", "project_name" : "Zeus Project", "project_cost" : 100000}
-    ];
-
-    let current_role = "product";
-    let current_tab = "vendor";
-    let current_page = "view_vendors";
-
-    const product = {
-      "product_tabs": ["Vendors", "Contracts"],
-      "product_views": ["View Vendors", "Add New Vendor"]
-    };
-
-    const finance = {
-      "finance_tabs": ["Budgets"],
-      "finance_views": ["View Costs", "Add New Costs"]
-    };
-
-    let current_nav = product;
-
-    function roleChange(role) {
-      let productButton = document.getElementById("product");
-      let financeButton = document.getElementById("finance");
-
-      current_role = role;
-
-      switch (current_role) {
-        case "product":
-          productButton.setAttribute("class", "button-primary");
-          financeButton.setAttribute("class", "button");
-          current_tab = "vendor";
-          break;
-        case "finance":
-          productButton.setAttribute("class", "button");
-          financeButton.setAttribute("class", "button-primary");
-          current_tab = "budget";
-          break;
-      }
-
-    }
-
-    function tabChange() {
-      let tabLoc = document.getElementById("tabs");
-      let tabHTML = "";
-      switch (current_tab) {
-        case "vendor":
-          product.product_tabs.forEach((t, n) => {
-            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
-          });
-          break;
-
-        case "budget":
-          finance.finance_tabs.forEach((t, n) => {
-            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
-          });
-          break;
-      }
-
-      tabLoc.innerHTML = tabHTML;
-      pageChange();
-    }
-
-    function pageChange(currentPage) {
-      let pageLoc = document.getElementById("pages");
-      let tabHTML = "";
-      switch (currentPage) {
-        case "product":
-          product.product_views.forEach((t, n) => {
-            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
-          });
-          break;
-
-        case "finance":
-          finance.finance_views.forEach((t, n) => {
-            tabHTML += "<div class='six columns' id='tab_'" + n + "'>" + t +  "</div>"
-          });
-          break;
-      }
-      pageLoc.innerHTML = tabHTML;
-    }
-
-    function viewChange() {
-      let viewLoc = document.getElementById("view");
-      let viewHTML = "";
-      switch (current_role) {
-        case "product":
-
-          break;
-
-        case "finance":
-
-          break;
-      }
-      viewLoc.innerHTML = viewHTML;
-    }
-
-
-  </script>
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="../javascript/views.js"></script>
+  <script src="../javascript/main.js"></script>
 
 </head>
-<body onload="roleChange('product');">
-
-  <!-- Primary Page Layout  –––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container title">
+<body class="p-0" onload="viewVendors()">
+  <div class="container p-0">
     <div class="row">
-      <div class="twelve columns" >
+      <div class="col title mt-5">
         <h5>Team Budget Planning</h5>
       </div>
     </div>
-  </div>
-
-  <!-- Navigation  ––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row" id="tabs">
-
-    </div>
-    <div class="row" id="pages">
-
-    </div>
-  </div>
-
-  <!-- Contents  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container content">
     <div class="row">
-      <div class="twelve column" id="view">
-        <p>Lorem ipsum is oremlay ipsumay in Pig Latin.</p>
-        <p><a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      <div class="col-12">
+        <ul class="nav justify-content-between">
+          <li class="nav-item">
+            <a href="index.html">View Vendors</a>
+          </li>
+          <li class="nav-item">
+            <a href="add_vendor.html">Add Vendor</a>
+          </li>
+          <li class="nav-item">
+            <a href="view_contracts.html">View Contracts</a>
+          </li>
+          <li>
+            <a href="add_contract.html">Add Contract</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-
-  <!-- Role Switcher  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container nav">
     <div class="row">
-      <div class="six columns" >
-        <button id="product" onclick="roleChange('product')">Product Management</button>
-      </div>
-      <div class="six columns" >
-        <button id="finance" onclick="roleChange('finance')">Finance Department</button>
+      <div class="col-12 pt-3" id="view">
+        <table class="mx-auto">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Company</th>
+              <th>Headquarters</th>
+            </tr>
+          </thead>
+          <tbody id="viewVendors">
+
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+  <footer class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="nav nav-pills nav-justified">
+          <a class="nav-item nav-link active" href="index.html">
+            Product Management
+          </a>
+          <a class="nav-item nav-link" href="finance.html">
+            Finance Department
+          </a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
